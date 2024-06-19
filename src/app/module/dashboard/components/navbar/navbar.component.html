@@ -1,0 +1,33 @@
+<nav
+  class="w-full h-[4vh] flex items-center justify-between px-4 border-b border-gray-300"
+>
+  <div
+    class="hover:text-blue-500 cursor-pointer"
+    type="button"
+    (click)="toggleSidebar()"
+  >
+    @if (isSidebarOpen) {
+    <i class="bi bi-box-arrow-left font-bold text-2xl"></i> }@else {
+    <i class="bi bi-box-arrow-right font-bold text-2xl"></i>
+    }
+  </div>
+
+  <div class="flex items-center justify-end">
+    <div class="dropdown dropdown-end mt-1">
+      <div class="avatar" tabindex="0" role="button">
+        <div class="w-6 h-6 rounded-full">
+          <img
+            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+          />
+        </div>
+      </div>
+      <ul
+        tabindex="0"
+        class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-md w-52"
+      >
+        <li><a>Item 1</a></li>
+        <li><a>Item 2</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
