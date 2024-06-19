@@ -29,7 +29,9 @@
           <a [routerLink]="'my-account'">Profile</a>
         </li>
         <li>
-          <button class="btn btn-sm btn-error text-white">Logout</button>
+          <button (onClick)="logout()" class="btn btn-sm btn-error text-white">
+            Logout
+          </button>
         </li>
       </ul>
     </div>

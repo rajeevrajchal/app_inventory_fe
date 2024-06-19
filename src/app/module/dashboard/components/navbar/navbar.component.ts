@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'app/module/auth/auth.service';
 import { DashboardService } from '../../dashboard.service';
 
 @Component({
@@ -8,7 +9,10 @@ import { DashboardService } from '../../dashboard.service';
 export class NavbarComponent {
   isSidebarOpen: boolean = false;
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(
+    private dashboardService: DashboardService,
+    private readonly authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.dashboardService.sidebarOpen$.subscribe((isOpen) => {
@@ -18,5 +22,9 @@ export class NavbarComponent {
 
   toggleSidebar() {
     this.dashboardService.toggleSidebar();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

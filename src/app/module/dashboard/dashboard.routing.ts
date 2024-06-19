@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './features/home/home.component';
 import { InstancesComponent } from './features/instances/instances.component';
 import { MyAccountComponent } from './features/my-account/my-account.component';
+import { OnboardingComponent } from './features/onboarding/onboarding.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
         path: '',
         pathMatch: 'prefix',
         component: HomeComponent,
+      },
+      {
+        path: 'onboard',
+        component: OnboardingComponent,
       },
       {
         path: 'instances',
