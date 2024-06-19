@@ -23,10 +23,14 @@
       </div>
       <ul
         tabindex="0"
-        class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-md w-52"
+        class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-md w-52 gap-2"
       >
-        <li><a>Item 1</a></li>
-        <li><a>Item 2</a></li>
+        <li>
+          <a [routerLink]="'my-account'">Profile</a>
+        </li>
+        <li>
+          <button class="btn btn-sm btn-error text-white">Logout</button>
+        </li>
       </ul>
     </div>
   </div>
