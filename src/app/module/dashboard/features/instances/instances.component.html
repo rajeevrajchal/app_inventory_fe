@@ -1,1 +1,57 @@
-<p>instances works!</p>
+<div class="flex flex-col gap-2">
+  <div class="w-full flex items-center justify-between">
+    <app-tabs [activeTab]="tabs[0].key || ''" [tabs]="tabs" />
+    <div class="flex items-center gap-4">
+      <div class="input input-bordered input-sm flex items-center gap-2">
+        <i class="bi bi-search"></i>
+        <input type="search" placeholder="search" />
+      </div>
+      <a
+        class="btn btn-primary btn-sm flex items-center justify-end gap-2 w-fit"
+        routerLink="create"
+      >
+        <i class="bi bi-plus text-2xl font-bold"></i>
+        <span>Add</span>
+      </a>
+    </div>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="table table-sm">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Ownership</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <!-- body -->
+      <tbody>
+        <tr>
+          <td>Cy Ganderton</td>
+          <td>Quality Control Specialist</td>
+          <td>Blue</td>
+          <th>Cloud</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td>Hart Hagerty</td>
+          <td>Desktop Support Technician</td>
+          <td>Purple</td>
+          <th>Cloud</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td>Brice Swyre</td>
+          <td>Tax Accountant</td>
+          <td>Red</td>
+          <th>Cloud</th>
+          <th>Action</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

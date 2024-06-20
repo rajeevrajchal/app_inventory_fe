@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AuthRoutingRoutes } from './auth-routing.routing';
 import { AuthComponent } from './auth.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
@@ -14,7 +15,7 @@ const components = [
 ];
 @NgModule({
   declarations: [...components],
-  imports: [CommonModule, AuthRoutingRoutes],
+  imports: [CommonModule, ReactiveFormsModule, AuthRoutingRoutes],
   exports: [...components],
 })
 export class AuthModule {}

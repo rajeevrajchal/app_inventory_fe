@@ -41,15 +41,18 @@ export class SidebarComponent {
   }
 
   isActive(url: string): boolean {
+    if (this.activeUrl === url) {
+      return true;
+    }
+
     if (
-      (this.activeUrl.startsWith(url) &&
-        url !== '/' &&
-        this.activeUrl.includes(`${url}/`)) ||
-      this.activeUrl === url
+      this.activeUrl.startsWith(url + '/') ||
+      this.activeUrl.startsWith(url + '?') ||
+      this.activeUrl === url + '/'
     ) {
       return true;
-    } else {
-      return false;
     }
+
+    return false;
   }
 }

@@ -29,8 +29,8 @@
           <a [routerLink]="'my-account'">Profile</a>
         </li>
         <li>
-          <button (onClick)="logout()" class="btn btn-sm btn-error text-white">
-            Logout
+          <button (click)="logout()" class="btn btn-sm btn-error text-white">
+            {{ isLogoutLoading ? "Loading..." : "Logout" }}
           </button>
         </li>
       </ul>

@@ -8,6 +8,7 @@ import { DashboardService } from '../../dashboard.service';
 })
 export class NavbarComponent {
   isSidebarOpen: boolean = false;
+  isLogoutLoading: boolean = false;
 
   constructor(
     private dashboardService: DashboardService,
@@ -25,6 +26,9 @@ export class NavbarComponent {
   }
 
   logout() {
-    this.authService.logout();
+    this.isLogoutLoading = true;
+    this.authService.logout().subscribe((data) => {
+      this.isLogoutLoading = false;
+    });
   }
 }

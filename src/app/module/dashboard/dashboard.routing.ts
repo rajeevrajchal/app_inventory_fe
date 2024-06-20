@@ -3,8 +3,9 @@ import { authGuard } from 'app/core/guards/auth.guard';
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './features/home/home.component';
 import { InstancesComponent } from './features/instances/instances.component';
+import { InstanceCreateComponent } from './features/instances/pages/instance-create/instance-create.component';
+import { InstanceDetailComponent } from './features/instances/pages/instance-detail/instance-detail.component';
 import { MyAccountComponent } from './features/my-account/my-account.component';
-import { OnboardingComponent } from './features/onboarding/onboarding.component';
 
 const routes: Routes = [
   {
@@ -18,13 +19,24 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'onboard',
-        component: OnboardingComponent,
-      },
-      {
         path: 'instances',
-        pathMatch: 'prefix',
-        component: InstancesComponent,
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            component: InstancesComponent,
+          },
+          {
+            path: 'create',
+            pathMatch: 'full',
+            component: InstanceCreateComponent,
+          },
+          {
+            path: ':instance_id',
+            pathMatch: 'full',
+            component: InstanceDetailComponent,
+          },
+        ],
       },
       {
         path: 'my-account',

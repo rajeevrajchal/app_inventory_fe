@@ -1,0 +1,11 @@
+<div role="tablist" class="tabs tabs-boxed tabs-md gap-1">
+  <a
+    *ngFor="let tab of tabs"
+    role="tab"
+    class="tab hover:bg-gray-300 capitalize"
+    [class.tab-active]="activeTab === tab.key"
+    (click)="changeTab(tab.key)"
+  >
+    {{ tab.label }}
+  </a>
+</div>

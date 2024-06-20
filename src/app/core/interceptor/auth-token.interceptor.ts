@@ -4,6 +4,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { inject } from '@angular/core';
+import { AUTH_USER } from 'app/model/auth.model';
 import { AuthService } from 'app/module/auth/auth.service';
 
 export const authTokenInterceptor: HttpInterceptorFn = (
@@ -11,11 +12,12 @@ export const authTokenInterceptor: HttpInterceptorFn = (
   next: HttpHandlerFn
 ) => {
   const authService = inject(AuthService);
-  const user = authService.loginUser;
-  const isLoggedIn = user !== null && user?.token;
-  if (isLoggedIn) {
+  const user = authService.loginUser as AUTH_USER;
+  const token = localStorage.getItem('token');
+  const isLoggedIn = user !== null && user;
+  if (isLoggedIn && token) {
     req = req.clone({
-      setHeaders: { Authorization: `Bearer ${user.token}` },
+      setHeaders: { Authorization: `Bearer ${token}` },
     });
   }
   return next(req);
