@@ -1,8 +1,13 @@
 <ul class="w-full">
   <li>
     <button class="btn btn-outline w-full" (click)="googleLogin()">
-      <i class="bi bi-google text-xl font-bold"></i>
-      <p>Login with Google</p>
+      <ng-content *ngIf="!isLoading; else loading">
+        <i class="bi bi-google text-xl font-bold"></i>
+        <p>{{ isLoading ? "loading.." : "Login with Google" }}</p>
+      </ng-content>
+      <ng-template #loading>
+        <span>Loading...</span>
+      </ng-template>
     </button>
   </li>
 </ul>

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ConfigService } from 'app/core/service/config.service';
 import { ToastService } from 'app/core/service/toast.service';
 import { AUTH_USER } from 'app/model/auth.model';
-import { Observable, catchError, of, tap } from 'rxjs';
+import { Observable, of, take, tap } from 'rxjs';
 import { EMAIL_LOGIN } from './types/email_login.type';
 
 @Injectable({
@@ -42,20 +42,14 @@ export class AuthService {
           localStorage.setItem('token', token);
           localStorage.setItem('user', JSON.stringify(data.user));
           this.router.navigateByUrl('/');
-        }),
-        catchError((error) => {
-          console.error('Error during authentication', error);
-          this.toastService.showError(error || 'Error during authentication');
-          return of(null);
         })
       );
   }
 
   googleLogin(): Observable<any> {
-    return this.http.post<Observable<any>>(
-      `${this.config.getBaseUrl()}google/login`,
-      {}
-    );
+    return this.http
+      .post<Observable<any>>(`${this.config.getBaseUrl()}google/login`, {})
+      .pipe(take(1));
   }
 
   emailLogin(payload: EMAIL_LOGIN): Observable<any> {
@@ -65,11 +59,6 @@ export class AuthService {
         console.log('the data', data);
         localStorage.setItem('user', JSON.stringify(data.user));
         this.router.navigateByUrl('/');
-      }),
-      catchError((error) => {
-        console.error('Error during authentication', error);
-        this.toastService.showError(error || 'Error during authentication');
-        return of(null);
       })
     );
   }

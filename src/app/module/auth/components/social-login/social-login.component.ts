@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastService } from 'app/core/service/toast.service';
 import { AuthService } from '../../auth.service';
 
 @Component({
@@ -7,14 +8,22 @@ import { AuthService } from '../../auth.service';
 })
 export class SocialLoginComponent {
   isLoading: boolean = false;
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly toastService: ToastService
+  ) {}
 
   googleLogin() {
     this.isLoading = true;
-    this.authService.googleLogin().subscribe((data) => {
-      console.log('data', data.redirect_url);
-      window.location.replace(data.redirect_url);
-      this.isLoading = false;
+    this.authService.googleLogin().subscribe({
+      next: (data) => {
+        window.location.replace(data.redirect_url);
+        this.isLoading = false;
+      },
+      error: (e) => {
+        console.log('error', e);
+        this.toastService.showError(e || 'Login Failed', 'Login');
+      },
     });
   }
 }

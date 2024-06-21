@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastService } from 'app/core/service/toast.service';
 import { INSTANCE } from 'app/model/instance.model';
 import { TAB } from 'app/shared/tabs/tab.type';
 import { take } from 'rxjs';
@@ -26,7 +27,10 @@ export class InstancesComponent implements OnInit {
     },
   ];
 
-  constructor(private readonly instanceService: InstancesService) {}
+  constructor(
+    private readonly instanceService: InstancesService,
+    private readonly toast: ToastService
+  ) {}
 
   ngOnInit(): void {
     this.getAllInstance();
@@ -37,9 +41,12 @@ export class InstancesComponent implements OnInit {
     this.instanceService
       .list()
       .pipe(take(1))
-      .subscribe((data) => {
-        this.instances = data;
-        this.isLoading = false;
+      .subscribe({
+        next: (data) => {
+          this.instances = data;
+          this.isLoading = false;
+        },
+        error: (e) => this.toast.showError(e, 'Instances'),
       });
   }
 }

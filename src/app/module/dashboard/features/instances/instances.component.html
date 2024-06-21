@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-2">
+<div class="flex flex-col justify-between gap-2">
   <div class="w-full flex items-center justify-between">
     <app-tabs [activeTab]="tabs[0].key || ''" [tabs]="tabs" />
     <div class="flex items-center gap-4">
@@ -15,42 +15,72 @@
       </a>
     </div>
   </div>
-  <div class="overflow-x-auto">
+  <div class="overflow-x-auto relative !overflow-visible">
     <table class="table table-sm">
-      <!-- head -->
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Location</th>
-          <th>Status</th>
-          <th>Ownership</th>
+          <th>Project Name</th>
+          <th class="w-54 break-words whitespace-normal">Location</th>
+          <th class="w-44 text-left">Owner</th>
+          <th class="w-44 text-center">Status</th>
           <th></th>
         </tr>
       </thead>
-
-      <!-- body -->
       <tbody>
-        <tr>
-          <td>Cy Ganderton</td>
-          <td>Quality Control Specialist</td>
-          <td>Blue</td>
-          <th>Cloud</th>
-          <th>Action</th>
-        </tr>
-        <tr>
-          <td>Hart Hagerty</td>
-          <td>Desktop Support Technician</td>
-          <td>Purple</td>
-          <th>Cloud</th>
-          <th>Action</th>
-        </tr>
-        <tr>
-          <td>Brice Swyre</td>
-          <td>Tax Accountant</td>
-          <td>Red</td>
-          <th>Cloud</th>
-          <th>Action</th>
-        </tr>
+        <ng-content *ngIf="!isLoading; else loading">
+          <tr *ngFor="let instance of instances" class="z-0">
+            <th>
+              <p>{{ instance.name }}</p>
+              <a
+                [href]="instance.domain"
+                class="font-normal text-primary"
+                target="_blank"
+              >
+                {{ instance.domain }}
+              </a>
+            </th>
+            <td>{{ instance.location }}</td>
+            <td class="text-left capitalize">
+              {{ instance.user.name }}
+            </td>
+            <td class="text-center">
+              <div class="badge badge-primary badge-outline capitalize">
+                {{ instance.status }}
+              </div>
+            </td>
+            <td>
+              <div class="mt-1 flex items-center gap-4 justify-center">
+                <div class="dropdown dropdown-end">
+                  <div tabindex="0" role="button" class="hover:text-primary">
+                    <i
+                      class="bi bi-three-dots-vertical text-xl font-extrabold"
+                    ></i>
+                  </div>
+                  <ul
+                    tabindex="0"
+                    class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 drop-shadow-md"
+                  >
+                    <li>
+                      <a
+                        [routerLink]="instance.id"
+                        class="hover:text-primary flex items-center gap-2"
+                      >
+                        <i class="bi bi-binoculars text-xl font-extrabold"></i>
+                        <p class="text-md">Detail</p>
+                      </a>
+                    </li>
+                    <li><a>Item 2</a></li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-content>
+        <ng-template #loading>
+          <tr>
+            <p>Loading....</p>
+          </tr>
+        </ng-template>
       </tbody>
     </table>
   </div>
