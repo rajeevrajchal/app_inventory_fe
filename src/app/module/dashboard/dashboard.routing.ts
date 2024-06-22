@@ -14,8 +14,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        pathMatch: 'full',
         component: HomeComponent,
+      },
+      {
+        path: 'my-account',
+        component: MyAccountComponent,
       },
       {
         path: 'instances',
@@ -23,11 +26,6 @@ const routes: Routes = [
           import('./features/instances/instance.module').then(
             (m) => m.InstanceModule
           ),
-      },
-      {
-        path: 'my-account',
-        pathMatch: 'full',
-        component: MyAccountComponent,
       },
       {
         path: '**',

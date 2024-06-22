@@ -7,6 +7,12 @@ import { Observable } from 'rxjs';
 
 const instancesAPI = 'system';
 
+const instance_all: Record<string, string> = {
+  '': instancesAPI,
+  archived: `${instancesAPI}?type=archived`,
+  on_hold: `${instancesAPI}?type=on_hold`,
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,9 +22,9 @@ export class InstancesService {
     private readonly config: ConfigService
   ) {}
 
-  list(): Observable<INSTANCE[] | $FIX_ME> {
+  list(tab: 'on_hold' | 'archived' | ''): Observable<INSTANCE[] | $FIX_ME> {
     return this.http.get<Observable<INSTANCE[] | $FIX_ME>>(
-      `${this.config.getBaseUrl()}${instancesAPI}`
+      `${this.config.getBaseUrl()}${instance_all[tab]}`
     );
   }
 }

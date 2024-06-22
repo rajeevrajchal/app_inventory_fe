@@ -23,6 +23,7 @@
           <th class="w-54 break-words whitespace-normal">Location</th>
           <th class="w-44 text-left">Owner</th>
           <th class="w-44 text-center">Status</th>
+          <th class="w-44 text-center">Multiple Instances</th>
           <th></th>
         </tr>
       </thead>
@@ -48,6 +49,11 @@
                 {{ instance.status }}
               </div>
             </td>
+            <td class="text-center">
+              <div class="badge badge-primary badge-outline capitalize">
+                {{ instance.subSystems.length > 0 ? "Yes" : "No" }}
+              </div>
+            </td>
             <td>
               <div class="mt-1 flex items-center gap-4 justify-center">
                 <div class="dropdown dropdown-end">
@@ -65,11 +71,21 @@
                         [routerLink]="instance.id"
                         class="hover:text-primary flex items-center gap-2"
                       >
-                        <i class="bi bi-binoculars text-xl font-extrabold"></i>
                         <p class="text-md">Detail</p>
                       </a>
                     </li>
-                    <li><a>Item 2</a></li>
+                    <li>
+                      <a
+                        [routerLink]="[
+                          '/instances',
+                          instance.id,
+                          'sub-instance'
+                        ]"
+                        class="hover:text-primary flex items-center gap-2"
+                      >
+                        <p class="text-md">Sub Instance</p>
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </div>

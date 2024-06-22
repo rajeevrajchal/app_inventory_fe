@@ -15,9 +15,9 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     SharedModule,
     ToastrModule.forRoot(),
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent],
   providers: [

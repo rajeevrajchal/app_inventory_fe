@@ -21,6 +21,21 @@ export class SidebarComponent {
       label: 'instances',
       icon: `<i class="bi bi-bar-chart-fill font-bold text-xl"></i>`,
     },
+    {
+      href: '/documents',
+      label: 'documents',
+      icon: `<i class="bi bi-folder-fill font-bold text-xl"></i>`,
+    },
+    {
+      href: '/work-logs',
+      label: 'work logs',
+      icon: `<i class="bi bi-bar-chart-steps font-bold text-xl"></i>`,
+    },
+    {
+      href: '/vendors',
+      label: 'vendors',
+      icon: `<i class="bi bi-nintendo-switch font-bold text-xl"></i>`,
+    },
   ];
 
   constructor(
