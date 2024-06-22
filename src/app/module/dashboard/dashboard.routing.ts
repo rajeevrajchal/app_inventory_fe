@@ -1,10 +1,9 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from 'app/core/guards/auth.guard';
+import { NotFoundComponent } from 'app/shared/not-found/not-found.component';
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './features/home/home.component';
-import { InstancesComponent } from './features/instances/instances.component';
-import { InstanceCreateComponent } from './features/instances/pages/instance-create/instance-create.component';
-import { InstanceDetailComponent } from './features/instances/pages/instance-detail/instance-detail.component';
 import { MyAccountComponent } from './features/my-account/my-account.component';
 
 const routes: Routes = [
@@ -15,36 +14,31 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        pathMatch: 'prefix',
+        pathMatch: 'full',
         component: HomeComponent,
       },
       {
         path: 'instances',
-        children: [
-          {
-            path: '',
-            pathMatch: 'full',
-            component: InstancesComponent,
-          },
-          {
-            path: 'create',
-            pathMatch: 'full',
-            component: InstanceCreateComponent,
-          },
-          {
-            path: ':instance_id',
-            pathMatch: 'full',
-            component: InstanceDetailComponent,
-          },
-        ],
+        loadChildren: () =>
+          import('./features/instances/instance.module').then(
+            (m) => m.InstanceModule
+          ),
       },
       {
         path: 'my-account',
-        pathMatch: 'prefix',
+        pathMatch: 'full',
         component: MyAccountComponent,
+      },
+      {
+        path: '**',
+        component: NotFoundComponent,
       },
     ],
   },
 ];
 
-export const DashboardRoutes = RouterModule.forChild(routes);
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class DashboardRoutes {}

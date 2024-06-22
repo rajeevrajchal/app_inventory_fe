@@ -6,16 +6,11 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutes } from './dashboard.routing';
 import { DashboardService } from './dashboard.service';
-import { InstancesComponent } from './features/instances/instances.component';
+import { InstanceModule } from './features/instances/instance.module';
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    NavbarComponent,
-    SidebarComponent,
-    InstancesComponent,
-  ],
-  imports: [CommonModule, DashboardRoutes, SharedModule],
+  declarations: [DashboardComponent, NavbarComponent, SidebarComponent],
+  imports: [CommonModule, DashboardRoutes, InstanceModule, SharedModule],
   providers: [DashboardService],
 })
 export class DashboardModule {}

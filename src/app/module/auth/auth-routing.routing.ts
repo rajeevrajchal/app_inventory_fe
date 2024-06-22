@@ -1,3 +1,4 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { localGuard } from 'app/core/guards/local.guard';
 import { AuthComponent } from './auth.component';
@@ -17,4 +18,8 @@ const routes: Routes = [
   },
 ];
 
-export const AuthRoutingRoutes = RouterModule.forChild(routes);
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class AuthRoutingRoutes {}

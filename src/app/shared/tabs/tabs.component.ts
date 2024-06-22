@@ -29,7 +29,7 @@ export class TabsComponent {
     this.activeTab = tab;
     this.router.navigate(['/instances'], {
       queryParams: queryParams,
-      queryParamsHandling: 'merge',
+      queryParamsHandling: tab ? 'merge' : 'preserve',
     });
   }
 }
