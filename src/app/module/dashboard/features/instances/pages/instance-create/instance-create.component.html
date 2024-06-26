@@ -1,3 +1,13 @@
-<p>
-  instance-create works!
-</p>
+<div>
+  <p>Create</p>
+  <ol>
+    <ng-container *ngFor="let step of steps; let i = index">
+      <li>
+        <a>{{ step.label }} {{ i }} </a>
+      </li>
+    </ng-container>
+  </ol>
+  <div class="bg-red-300 h-full w-full">
+    <p>the stepper content lol</p>
+  </div>
+</div>

@@ -31,4 +31,8 @@ export class TabsComponent {
       queryParams: queryParams,
     });
   }
+
+  ngOnDestroy(): void {
+    this.activeTab = '';
+  }
 }
