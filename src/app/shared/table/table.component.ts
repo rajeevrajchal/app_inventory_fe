@@ -7,8 +7,6 @@ import { COLUMN } from './type/table-column';
   templateUrl: './table.component.html',
 })
 export class TableComponent {
-  constructor() {}
-
   @Input() loading: boolean = false;
   @Input() data: $FIX_ME = false;
   @Input({

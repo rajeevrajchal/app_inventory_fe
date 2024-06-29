@@ -1,13 +1,44 @@
-<div>
-  <p>Create</p>
-  <ol>
-    <ng-container *ngFor="let step of steps; let i = index">
-      <li>
-        <a>{{ step.label }} {{ i }} </a>
-      </li>
-    </ng-container>
-  </ol>
-  <div class="bg-red-300 h-full w-full">
-    <p>the stepper content lol</p>
+<div class="flex flex-col gap-4 h-full w-full">
+  <div class="flex items-center justify-between border p-2 rounded-md">
+    <div class="flex items-center gap-6 flex-1">
+      @if(active > 0){
+      <button class="btn btn-sm btn-ghost" (click)="prevStep()">
+        <i class="bi bi-arrow-left text-2xl font-extrabold"></i>
+      </button>
+      }
+      <div
+        *ngFor="let step of steps; let i = index"
+        class="flex items-center gap-2"
+      >
+        <div
+          class="w-8 h-8 flex items-center justify-center rounded-full text-sm"
+          [class]="active === i ? 'bg-primary text-white' : 'bg-gray-200'"
+        >
+          {{ i }}
+        </div>
+        <p
+          class="text-sm"
+          [class]="active === i ? 'text-primary' : 'text-inherit'"
+        >
+          {{ step.label }}
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <button class="btn btn-sm btn-ghost btn-primary">
+        Skip Sub Instance
+      </button>
+      <button class="btn btn-sm btn-outline btn-primary" (click)="nextStep()">
+        Continue
+      </button>
+    </div>
+  </div>
+  <div class="h-full w-full">
+    <!-- <ng-container
+      *ngComponentOutlet="getComponent(); injector: getInjector()"
+    ></ng-container> -->
+    <ng-container
+      *ngComponentOutlet="getComponent(); inputs: { label }"
+    ></ng-container>
   </div>
 </div>
