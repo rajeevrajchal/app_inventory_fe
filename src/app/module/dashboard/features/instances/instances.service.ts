@@ -27,4 +27,10 @@ export class InstancesService {
       `${this.config.getBaseUrl()}${instance_all[tab]}`
     );
   }
+
+  detail(id: string): Observable<INSTANCE | $FIX_ME> {
+    return this.http.get<Observable<INSTANCE>>(
+      `${this.config.getBaseUrl()}${instancesAPI}/${id}`
+    );
+  }
 }

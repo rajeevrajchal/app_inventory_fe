@@ -1,3 +1,4 @@
+import { $FIX_ME } from 'app/types/fix_me.type';
 import { AUTH_USER } from './auth.model';
 
 export type INSTANCE = {
@@ -15,4 +16,5 @@ export type INSTANCE = {
   status: string;
   user: Partial<AUTH_USER>;
   subSystems: INSTANCE[];
+  features: $FIX_ME;
 };

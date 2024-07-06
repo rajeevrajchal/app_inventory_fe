@@ -52,7 +52,10 @@ export class InstancesComponent implements OnInit {
           this.instances = data;
           this.isLoading = false;
         },
-        error: (e) => this.toast.showError(e, 'Instances'),
+        error: (e) => {
+          this.toast.showError(e, 'Instances');
+          this.isLoading = false;
+        },
       });
   }
 }
